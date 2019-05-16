@@ -1,0 +1,14 @@
+uuid: 1fbcd2e3-0a7b-46bf-8ca7-f811eefe6e9e
+name: Lab02
+mail: lishdezv098@hotmail.es
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: es
+default_langcode: es
+_core:
+  default_config_hash: yTxtFqBHnEWxQswuWvkjE8mKw2t8oKuCL1q8KnfHuGE

@@ -1,0 +1,14 @@
+uuid: 75085f77-a20e-431e-9f86-ac85fddfc59f
+langcode: es
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: vymHlgJy26BuI5GGj9-IXjwR3dRC5C0tij4BpWJnoqw
+id: feedback
+label: 'Comentarios sobre el sitio web'
+recipients:
+  - lishdezv098@hotmail.es
+reply: ''
+weight: 0
+message: 'Se ha enviado su mensaje.'
+redirect: ''
