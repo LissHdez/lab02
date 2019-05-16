@@ -1,8 +1,0 @@
-uuid: 1e6a97cb-caaa-434e-a073-36762da60e38
-langcode: es
-status: true
-dependencies: {  }
-name: Licencias
-vid: licencias_
-description: 'licencias de contenido'
-weight: 0
