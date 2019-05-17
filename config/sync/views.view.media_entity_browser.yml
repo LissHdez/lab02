@@ -1,19 +1,23 @@
-uuid: 5f37e257-6de7-425f-b035-e364a80cafa8
-langcode: es
+uuid: 3dbc171f-cbe9-4c97-8028-ab52f0f8f895
+langcode: und
 status: true
 dependencies:
+  config:
+    - image.style.media_entity_browser_thumbnail
   module:
-    - block_content
+    - entity_browser
+    - image
+    - media
     - user
 _core:
-  default_config_hash: BmeDSOTSaTVy5QLgxgJ5ye_ZseG5t88JXRP1apFoBkk
-id: block_content
-label: 'Biblioteca de bloques personalizados'
+  default_config_hash: _ouvvjB-2mzyW_my2WhKPWGHdsWUYdHSagahvxOcYHk
+id: media_entity_browser
+label: 'Media Browser'
 module: views
-description: 'Encontrar y administrar bloques personalizados.'
-tag: default
-base_table: block_content_field_data
-base_field: id
+description: ''
+tag: ''
+base_table: media_field_data
+base_field: mid
 core: 8.x
 display:
   default:
@@ -25,7 +29,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'administer blocks'
+          perm: 'view media'
       cache:
         type: tag
         options: {  }
@@ -40,7 +44,7 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Aplicar
+          submit_button: Apply
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
@@ -48,15 +52,17 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: mini
+        type: full
         options:
-          items_per_page: 50
+          items_per_page: 9
           offset: 0
           id: 0
           total_pages: null
           tags:
             previous: '‹ Previous'
             next: 'Next ›'
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -65,64 +71,29 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          quantity: 9
       style:
-        type: table
+        type: default
         options:
           grouping: {  }
           row_class: ''
           default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
-          columns:
-            info: info
-            type: type
-            changed: changed
-            operations: operations
-          info:
-            info:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            type:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            changed:
-              sortable: true
-              default_sort_order: desc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            operations:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: changed
-          empty_table: true
       row:
         type: fields
+        options:
+          inline: {  }
+          separator: ''
+          hide_empty: false
+          default_field_elements: true
       fields:
-        info:
-          id: info
-          table: block_content_field_data
-          field: info
+        thumbnail__target_id:
+          id: thumbnail__target_id
+          table: media_field_revision
+          field: thumbnail__target_id
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Descripción del bloque'
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -155,7 +126,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -163,11 +134,12 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: string
+          click_sort_column: target_id
+          type: image
           settings:
-            link_to_entity: true
-          group_column: value
+            image_style: media_entity_browser_thumbnail
+            image_link: ''
+          group_column: ''
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -177,18 +149,18 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: null
-          entity_field: info
+          entity_type: media
+          entity_field: thumbnail
           plugin_id: field
-        type:
-          id: type
-          table: block_content_field_data
-          field: type
+        bundle:
+          id: bundle
+          table: media_field_data
+          field: bundle
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Tipo de bloque'
-          exclude: false
+          label: ''
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -220,7 +192,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -242,21 +214,21 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: block_content
-          entity_field: type
+          entity_type: media
+          entity_field: bundle
           plugin_id: field
-        changed:
-          id: changed
-          table: block_content_field_data
-          field: changed
+        name:
+          id: name
+          table: media_field_data
+          field: name
           relationship: none
           group_type: group
           admin_label: ''
-          label: Updated
+          label: ''
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: "<div class=\"media-info\">\n<span class=\"media-info--{{ bundle }}\">{{ bundle }}</span>\n{{ name }}\n</div>"
             make_link: false
             path: ''
             absolute: false
@@ -272,8 +244,8 @@ display:
             target: ''
             nl2br: false
             max_length: 0
-            word_boundary: true
-            ellipsis: true
+            word_boundary: false
+            ellipsis: false
             more_link: false
             more_link_text: ''
             more_link_path: ''
@@ -281,11 +253,11 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: ''
+          element_type: '0'
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -293,22 +265,31 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          entity_type: block_content
-          entity_field: changed
-          type: timestamp
+          click_sort_column: value
+          type: string
           settings:
-            date_format: short
-            custom_date_format: ''
-            timezone: ''
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: media
+          entity_field: media
           plugin_id: field
-        operations:
-          id: operations
-          table: block_content
-          field: operations
+        entity_browser_select:
+          id: entity_browser_select
+          table: media
+          field: entity_browser_select
           relationship: none
           group_type: group
           admin_label: ''
-          label: Operations
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -341,7 +322,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -349,54 +330,59 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          destination: true
-          entity_type: block_content
-          plugin_id: entity_operations
+          entity_type: media
+          plugin_id: entity_browser_select
       filters:
-        info:
-          id: info
-          table: block_content_field_data
-          field: info
+        status:
+          id: status
+          table: media_field_data
+          field: status
           relationship: none
           group_type: group
           admin_label: ''
-          operator: contains
-          value: ''
+          operator: '='
+          value: '0'
           group: 1
           exposed: true
           expose:
-            operator_id: info_op
-            label: 'Descripción del bloque'
-            description: ''
+            operator_id: ''
+            label: 'True'
+            description: null
             use_operator: false
-            operator: info_op
-            identifier: info
-            required: false
+            operator: status_op
+            identifier: status
+            required: true
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-          is_grouped: false
+          is_grouped: true
           group_info:
-            label: ''
+            label: 'Publishing status'
             description: ''
-            identifier: ''
+            identifier: status
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
             default_group_multiple: {  }
-            group_items: {  }
-          entity_type: block_content
-          entity_field: info
-          plugin_id: string
-        type:
-          id: type
-          table: block_content_field_data
-          field: type
+            group_items:
+              1:
+                title: Published
+                operator: '='
+                value: '1'
+              2:
+                title: Unpublished
+                operator: '='
+                value: '0'
+          entity_type: media
+          entity_field: status
+          plugin_id: boolean
+        bundle:
+          id: bundle
+          table: media_field_data
+          field: bundle
           relationship: none
           group_type: group
           admin_label: ''
@@ -405,19 +391,18 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: type_op
-            label: 'Tipo de bloque'
+            operator_id: bundle_op
+            label: Provider
             description: ''
             use_operator: false
-            operator: type_op
-            identifier: type
+            operator: bundle_op
+            identifier: provider
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
-              administrator: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -431,32 +416,33 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: block_content
-          entity_field: type
+          entity_type: media
+          entity_field: bundle
           plugin_id: bundle
-        reusable:
-          id: reusable
-          table: block_content_field_data
-          field: reusable
+        name:
+          id: name
+          table: media_field_data
+          field: name
           relationship: none
           group_type: group
           admin_label: ''
-          operator: '='
-          value: '1'
+          operator: contains
+          value: ''
           group: 1
-          exposed: false
+          exposed: true
           expose:
-            operator_id: ''
-            label: ''
+            operator_id: name_op
+            label: 'Media name'
             description: ''
             use_operator: false
-            operator: ''
-            identifier: ''
+            operator: name_op
+            identifier: name
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
+              anonymous: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -469,70 +455,82 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          entity_type: block_content
-          entity_field: reusable
-          plugin_id: boolean
+          entity_type: media
+          entity_field: name
+          plugin_id: string
+        langcode:
+          id: langcode
+          table: media_field_data
+          field: langcode
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: langcode_op
+            label: Language
+            description: ''
+            use_operator: false
+            operator: langcode_op
+            identifier: langcode
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: media
+          entity_field: langcode
+          plugin_id: language
       sorts: {  }
-      title: 'Biblioteca de bloques personalizados'
       header: {  }
       footer: {  }
-      empty:
-        area_text_custom:
-          id: area_text_custom
-          table: views
-          field: area_text_custom
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content: 'No hay bloques personalizados disponibles.'
-          plugin_id: text_custom
-        block_content_listing_empty:
-          admin_label: ''
-          empty: true
-          field: block_content_listing_empty
-          group_type: group
-          id: block_content_listing_empty
-          label: ''
-          relationship: none
-          table: block_content
-          plugin_id: block_content_listing_empty
-          entity_type: block_content
+      empty: {  }
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
         - user.permissions
-      max-age: -1
       tags: {  }
-  page_1:
-    display_plugin: page
-    id: page_1
-    display_title: Página
+  entity_browser_1:
+    display_plugin: entity_browser
+    id: entity_browser_1
+    display_title: 'Entity browser'
     position: 1
     display_options:
       display_extenders: {  }
-      path: admin/structure/block/block-content
-      menu:
-        type: tab
-        title: 'Biblioteca de bloques personalizados'
-        description: ''
-        parent: block.admin_display
-        weight: 0
-        context: '0'
-        menu_name: admin
     cache_metadata:
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
         - user.permissions
-      max-age: -1
       tags: {  }

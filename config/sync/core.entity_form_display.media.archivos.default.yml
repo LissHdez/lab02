@@ -1,0 +1,45 @@
+uuid: 14966a87-7c3e-482e-8501-7cba896490f1
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.media.archivos.field_media_file_1
+    - field.field.media.archivos.field_tipolicencia
+    - media.type.archivos
+  module:
+    - file
+id: media.archivos.default
+targetEntityType: media
+bundle: archivos
+mode: default
+content:
+  field_media_file_1:
+    weight: 1
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_tipolicencia:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  path: true
+  status: true
+  uid: true

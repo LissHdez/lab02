@@ -1,4 +1,4 @@
-uuid: 57c4b744-7609-46f1-9780-23a6de6b0828
+uuid: 611e5927-c79a-4c3d-a8ae-5a44c08e018f
 langcode: es
 status: true
 dependencies:
@@ -837,7 +837,16 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: admin/content/media-table
+      path: admin/content/media
+      menu:
+        type: tab
+        title: Media
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 0
+        context: '0'
+        menu_name: main
       display_description: ''
     cache_metadata:
       max-age: 0

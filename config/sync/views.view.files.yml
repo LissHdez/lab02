@@ -187,7 +187,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Name
+          label: Nombre
           exclude: false
           alter:
             alter_text: false
@@ -1028,7 +1028,7 @@ display:
           exception:
             value: all
             title_enable: false
-            title: All
+            title: Todo(s)
           title_enable: true
           title: 'Información de uso del fichero para {{ arguments.fid }}'
           default_argument_type: fixed

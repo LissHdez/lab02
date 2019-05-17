@@ -106,7 +106,7 @@ display:
           exception:
             value: ''
             title_enable: false
-            title: All
+            title: Todo(s)
           title_enable: true
           title: '{{ arguments.tid }}'
           default_argument_type: fixed
@@ -294,7 +294,7 @@ display:
       tags: {  }
   page_1:
     id: page_1
-    display_title: Page
+    display_title: Página
     display_plugin: page
     position: 1
     display_options:

@@ -1,0 +1,20 @@
+uuid: 4d1d6dd2-7715-4028-9fcf-4a1c7bb3c8e5
+langcode: es
+status: true
+dependencies:
+  module:
+    - media
+    - taxonomy
+id: media.field_tipolicencia
+field_name: field_tipolicencia
+entity_type: media
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

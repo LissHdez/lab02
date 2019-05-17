@@ -1,0 +1,44 @@
+uuid: 6934a3d7-f216-42ff-be94-4de0601376a8
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.field.media.archivos.field_media_file_1
+    - field.field.media.archivos.field_tipolicencia
+    - media.type.archivos
+  module:
+    - file
+id: media.archivos.default
+targetEntityType: media
+bundle: archivos
+mode: default
+content:
+  field_media_file_1:
+    weight: 4
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+  field_tipolicencia:
+    weight: 5
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  name:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  thumbnail: true
+  uid: true
