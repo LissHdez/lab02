@@ -1,0 +1,29 @@
+uuid: 48683b89-d076-445d-945e-8e8c5a2d3ba4
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_tipolicencia
+    - media.type.archivos
+    - taxonomy.vocabulary.licencias_
+id: media.archivos.field_tipolicencia
+field_name: field_tipolicencia
+entity_type: media
+bundle: archivos
+label: TipoLicencia
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      licencias_: licencias_
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

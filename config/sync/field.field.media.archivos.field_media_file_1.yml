@@ -1,0 +1,27 @@
+uuid: 68de46b4-48d8-402c-8894-a90b6769fcfa
+langcode: es
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_media_file_1
+    - media.type.archivos
+  module:
+    - file
+id: media.archivos.field_media_file_1
+field_name: field_media_file_1
+entity_type: media
+bundle: archivos
+label: File
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file
